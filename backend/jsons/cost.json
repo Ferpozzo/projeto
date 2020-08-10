@@ -1,0 +1,18 @@
+{
+    "name": "Luis Fernando Machado Pozzobon",
+    "email": "asadasdasdasd@hotmail.com",
+    "password": "aaaaa123luis",
+    "payDate": "10/10/2020",
+    "dueDate": "05/06/2021",
+    "costs": [
+        {
+            "name": "Aluguel",
+            "type": "Fixed",
+            "value": "350",
+            "payDate": "10/10/2020",
+            "dueDate": "05/06/2021",
+            "accountRepeat": 1
+        }
+    ]
+}
+    

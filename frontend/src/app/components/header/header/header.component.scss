@@ -1,0 +1,56 @@
+$component-name: "c-dropdown";
+$color-primary: rgb(72, 136, 209);
+$color-background: rgb(105, 199, 236);
+.#{$component-name} {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    margin-right: 2px;;
+    padding: 0;
+    &__item {
+        color: $color-primary;
+        margin: 0 10px;
+        position: relative;
+
+        &:hover {
+            .#{$component-name}__submenu{
+                transform: translateX(-50%) rotateX(0deg);
+            }
+        }
+    }
+    &__link {
+        color: $color-primary;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__submenu {
+        background-color: $color-primary;
+        border-radius: 10px;
+        list-style: none;
+        margin: 0;
+        padding: 15px;
+        width: 80px;
+        position: absolute;
+        transform: translateX(-50%) rotateX(-90deg);
+        transform-origin: top center;
+        transition: all 150ms 100ms ease-in ;
+        top: calc(100% + 10px);
+        &-item {
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+        &-link {
+            color: white;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

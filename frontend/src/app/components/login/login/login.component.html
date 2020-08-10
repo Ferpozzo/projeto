@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <div class="container">
+        <h4>Bem vindo de volta!</h4>
+        <span>
+            <input class="gate" type="text" placeholder="seunome@email.com" formControlName="email" /><label
+                for="class">Nome</label>
+        </span>
+        <span>
+            <input class="gate" type="password" placeholder="Senha" formControlName="password" /><label
+                for="class">Senha</label>
+        </span>
+        <button class="btn-green" type="submit">Entrar</button>
+    </div>
+</form>

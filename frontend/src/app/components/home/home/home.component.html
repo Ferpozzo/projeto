@@ -1,0 +1,11 @@
+<div class="chart">
+    <canvas #chart ></canvas>
+</div>
+<br>
+<br>
+<select (change)="changeChart()" [(ngModel)]="chartType">
+    <option value="bar">Barras</option>
+    <option value="horizontalBar">Barras Horizontal</option>
+    <option value="line">Linhas</option>
+    <option value="pie">Pie</option>
+</select>

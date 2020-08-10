@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+  <div class="container">
+    <h4>Bem vindo a Streamoon, preencha as informações abaixo para criar sua conta!</h4>
+    <span>
+      <input class="gate" type="text" placeholder="Seu Nome" formControlName="name" /><label for="class">Nome</label>
+    </span>
+    <span> 
+      <input class="gate" type="text" placeholder="seuemail@email.com" formControlName="email" /><label
+        for="class">Email</label>
+    </span>
+    <span>
+      <input class="gate" type="password" placeholder="Sua senha" formControlName="password" /><label
+        for="class">Senha</label>
+    </span>
+    <span>
+      <input class="gate" type="password" placeholder="Confirme a senha" formControlName="passwordConfirm" /><label
+        for="class">Confirme a senha</label>
+    </span>
+    <button class="btn-green" type="submit">Cadastrar</button>
+  </div>
+</form>
