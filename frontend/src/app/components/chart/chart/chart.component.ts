@@ -1,22 +1,22 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Chart } from 'chart.js'
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-chart',
+  templateUrl: './chart.component.html',
+  styleUrls: ['./chart.component.scss']
 })
-export class HomeComponent implements OnInit {
-  @ViewChild('chart', { static: true }) element: ElementRef
-  chartType = 'bar';
-  newChart: Chart;
+export class ChartComponent implements OnInit {
+  @ViewChild("chart", { static: true }) element: ElementRef
   chart: any;
-  iterator = [1,2,3,4,5,6,7]
-  constructor() {
+  chartType = 'bar';
+  constructor() { }
 
-  }
   ngOnInit(): void {
+    this.createChart('bar');
+  }
+  createChart(chartType: string) {
     this.chart = new Chart(this.element.nativeElement, {
-      type: this.chartType,
+      type: chartType,
       data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
@@ -50,11 +50,9 @@ export class HomeComponent implements OnInit {
           }]
         }
       }
-    })
+    });
   }
   changeChart() {
-    console.log(this.chartType)
-    this.newChart = this.chart;
     this.chart.destroy();
     this.chart = new Chart(this.element.nativeElement, {
       type: this.chartType,

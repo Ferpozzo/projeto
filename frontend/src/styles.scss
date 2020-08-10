@@ -1,2 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "halfmoon/css/halfmoon.min.css";
+
+.chart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    width: 33%;
+    height: 25%;
+    min-width: 360px;
+}

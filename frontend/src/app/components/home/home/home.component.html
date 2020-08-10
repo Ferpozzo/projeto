@@ -1,11 +1,13 @@
-<div class="chart">
-    <canvas #chart ></canvas>
+<div class="chart content">
+    <canvas #chart></canvas>
+    <select (change)="changeChart()" [(ngModel)]="chartType">
+        <option value="bar">Barras</option>
+        <option value="horizontalBar">Barras Horizontal</option>
+        <option value="line">Linhas</option>
+        <option value="pie">Torta</option>
+        <option value="doughnut">Rosquinha</option>
+    </select>
 </div>
-<br>
-<br>
-<select (change)="changeChart()" [(ngModel)]="chartType">
-    <option value="bar">Barras</option>
-    <option value="horizontalBar">Barras Horizontal</option>
-    <option value="line">Linhas</option>
-    <option value="pie">Pie</option>
-</select>
+<div class="content" *ngFor="let i of iterator">
+    <app-chart></app-chart>
+</div>
