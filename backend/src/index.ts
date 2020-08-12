@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { environment } from './common/environments';
 import { userRouter } from './routes/user';
+import { objectRouter } from './routes/object';
 const app = express();
 
 app.use(cors({
@@ -13,6 +14,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users', userRouter);
+app.use('/objects', objectRouter);
 app.listen(environment.server.port, () => {
     console.log('Servidor rodando!');
 });

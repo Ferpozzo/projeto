@@ -13,7 +13,7 @@ userRouter.get('', async (req, res) => {
         console.log(`Entrou ${data}`)
         return res.send(user)
     } catch (err) {
-        return res.status(400).send({ error: `Get failed : ${err}` })
+        return res.status(500).send({ error: `Get failed : ${err}` })
     }
 });
 //get one user
@@ -26,7 +26,7 @@ userRouter.get('/:id', async (req, res) => {
             return res.status(404).send({ error: `User not exists` })
         });
     } catch (err) {
-        return res.status(400).send({ error: `Get failed : ${err}` })
+        return res.status(500).send({ error: `Get failed : ${err}` })
     }
 });
 //register user
@@ -62,7 +62,7 @@ userRouter.delete('/:id', async (req, res) => {
             return res.status(404).send({ error: `User not exists.` })
         });
     } catch (err) {
-        return res.status(400).send({ error: `Get failed : ${err}` })
+        return res.status(400).send({ error: `Delete failed : ${err}` })
     }
 });
 
@@ -78,7 +78,7 @@ userRouter.get('/:id/costs/', async (req, res) => {
             }
         });
     } catch (err) {
-        return res.status(400).send({ error: `Get failed : ${err}` })
+        return res.status(500).send({ error: `Get failed : ${err}` })
     }
 });
 //get one especific user cost
@@ -91,7 +91,7 @@ userRouter.get('/:id/costs/:cid', async (req, res) => {
             return res.status(404).send({ error: `Cost not exists` })
         });
     } catch (err) {
-        return res.status(400).send({ error: `Get failed : ${err}` })
+        return res.status(500).send({ error: `Get failed : ${err}` })
     }
 });
 //register user cost
@@ -149,6 +149,53 @@ userRouter.post('/authenticate', async (req, res) => {
         }
     }
 })
+
+//OBJECTS
+//get all objects from user
+userRouter.get('/:id/objects/', async (req, res) => {
+    try {
+        const objects = await User.findOne({ '_id': req.params.id }, 'objects').then(objects => {
+            if (objects) {
+                return res.send(objects);
+            } else {
+                return res.status(404).send({ error: `No objects registered` });
+            }
+        });
+    } catch (err) {
+        return res.status(500).send({ error: `Get failed : ${err}` })
+    }
+});
+//get one object from user
+userRouter.get('/:id/objects/:oid', async (req, res) => {
+    try {
+        const object = await User.findOne({ '_id': req.params.id, 'object._id': req.params.oid }, 'object.$').then(object => {
+            if (object) {
+                return res.json(object)
+            }
+            return res.status(404).send({ error: `Object not exists` })
+        });
+    } catch (err) {
+        return res.status(500).send({ error: `Get failed : ${err}` })
+    }
+});
+//post user object
+userRouter.post('/:id/objects', async (req, res) => {
+    try {
+        const object = await User.findOneAndUpdate({ '_id': req.params.id }, {
+            $push: {
+                'objects': req.body
+            },
+        }, { new: true }).then(object => {
+            if (object) {
+                return res.status(201).send(object)
+            } else {
+                return res.status(404).send({ error: `Object register failed` });
+            }
+        });
+    } catch (err) {
+        return res.status(400).send({ error: `Post failed : ${err}` })
+    }
+});
 userRouter.get('/', (req, res) => {
     res.send('Works')
 })

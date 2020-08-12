@@ -2,7 +2,6 @@ import { LoginService } from './../login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,8 +27,8 @@ export class LoginComponent implements OnInit {
     if (form.valid == true) {
       this.api.login(form.value).subscribe(
         data => {
-          this.router.navigate(['/register'])
-          console.log(data)
+          this.router.navigate(['/home'],
+            { queryParams: { 'id': data.user._id } })
         },
         error => {
           console.log(error.error)

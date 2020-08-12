@@ -1,13 +1,7 @@
-<div class="chart content">
-    <canvas #chart></canvas>
-    <select (change)="changeChart()" [(ngModel)]="chartType">
-        <option value="bar">Barras</option>
-        <option value="horizontalBar">Barras Horizontal</option>
-        <option value="line">Linhas</option>
-        <option value="pie">Torta</option>
-        <option value="doughnut">Rosquinha</option>
-    </select>
+<div class="content" *ngFor="let user of users">
+    Nome: {{user.name}}
+    <div *ngFor="let cost of user.costs">
+        Custo: {{cost.name}} Valor: {{cost.value}}
+    </div>
 </div>
-<div class="content" *ngFor="let i of iterator">
-    <app-chart></app-chart>
-</div>
+<app-chart uId="{{userId}}"></app-chart>
