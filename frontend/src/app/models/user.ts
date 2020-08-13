@@ -1,11 +1,12 @@
 interface Cost {
     name: string,
     value: number,
-    payDate: Date,
-    dueDate: Date,
+    payDate: string,
+    dueDate: string,
     accountRepeat: number
 }
 export interface User {
+    _id: string,
     name: string,
     email: string,
     password: string,

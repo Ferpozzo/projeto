@@ -1,7 +1,17 @@
+<!-- <app-chart uCharts="{{uCharts}}"></app-chart>
 <div class="content" *ngFor="let user of users">
     Nome: {{user.name}}
     <div *ngFor="let cost of user.costs">
         Custo: {{cost.name}} Valor: {{cost.value}}
     </div>
-</div>
-<app-chart uId="{{userId}}"></app-chart>
+</div> -->
+<button (click)="increment()">Increment</button>
+
+<div>Current Count: {{ count$ | async }}</div>
+
+<button (click)="decrement()">Decrement</button>
+
+<button (click)="reset()">Reset Counter</button>
+<app-load></app-load>
+
+<div>{{user$ | async | json}}</div>

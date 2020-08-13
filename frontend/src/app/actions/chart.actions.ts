@@ -1,4 +1,5 @@
-import { createAction } from '@ngrx/store'
+import { createAction } from '@ngrx/store';
 
-export const createChart = createAction('[Chart Component] CreateChart')
-export const favoriteChart = createAction('[Chart Component] FavoriteChart')
+export const increment = createAction('[Chart Component] Increment');
+export const decrement = createAction('[Chart Component] Decrement');
+export const reset = createAction('[Chart Component] Reset');

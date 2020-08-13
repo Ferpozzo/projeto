@@ -4,7 +4,7 @@
     <span>
       <input class="gate" type="text" placeholder="Seu Nome" formControlName="name" /><label for="class">Nome</label>
     </span>
-    <span> 
+    <span>
       <input class="gate" type="text" placeholder="seuemail@email.com" formControlName="email" /><label
         for="class">Email</label>
     </span>
@@ -19,3 +19,5 @@
     <button class="btn-green" type="submit">Cadastrar</button>
   </div>
 </form>
+
+<p *ngIf="user$"> User: {{ user$ |async | json}}</p>

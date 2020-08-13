@@ -10,13 +10,12 @@ import { environment } from 'src/environments/environment';
 export class HomeService {
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json')
   constructor(private http: HttpClient) { }
-
-  getAllUsers(): Observable<any> {
-    return this.http.get(`${environment.baseUrl}/users`,
-      { headers: this.httpHeaders })
-  }
   getUser(id): Observable<any> {
     return this.http.get(`${environment.baseUrl}/users/${id}`,
+      { headers: this.httpHeaders })
+  }
+  getUserObjects(id): Observable<any> {
+    return this.http.get(`${environment.baseUrl}/users/${id}/objects`,
       { headers: this.httpHeaders })
   }
 }

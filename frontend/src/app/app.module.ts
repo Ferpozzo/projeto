@@ -11,6 +11,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login/login.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { ChartComponent } from './components/chart/chart/chart.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './reducers/chart.reducer';
+//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './effects/user.effects';
+import { ChartEffects } from './effects/chart.effects';
+import { UserComponent } from './user/user/user.component';
+import { userReducer } from './reducers/user.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,14 +29,24 @@ import { ChartComponent } from './components/chart/chart/chart.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    ChartComponent
+    ChartComponent,
+    UserComponent
   ],
   imports: [
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({
+      count: counterReducer,
+      user: userReducer
+    }),
+    EffectsModule.forRoot([UserEffects]),
+    /* StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }), */
   ],
   providers: [],
   bootstrap: [AppComponent]

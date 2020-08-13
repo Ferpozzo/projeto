@@ -1,6 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { Chart } from 'chart.js'
 import { ChartService } from '../chart.service';
+import { ChartModel } from 'src/app/models/chart';
+import { increment, decrement } from 'src/app/actions/chart.actions';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { counterReducer } from '../../../reducers/chart.reducer'
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -8,32 +13,27 @@ import { ChartService } from '../chart.service';
 })
 export class ChartComponent implements OnInit {
   @ViewChild("chart", { static: true }) element: ElementRef
-  @Input() uId: string
+  @Input() uCharts: ChartModel[]
   chart: any;
-  charts = [];
-  chartType = 'bar';
+  chartType = 'bar'
+  count2$: Observable<number>
   constructor(
-    private api: ChartService
-  ) { }
+    private api: ChartService,
+    private store: Store<{ count: number }>
+  ) {
+
+  }
 
   ngOnInit(): void {
-    this.getUserObjects();
+    //this.createChart()
+    this.count2$ = this.store.pipe(select('count'));
+    console.log(this.count2$)
   }
-  getUserObjects = () => {
-    this.api.getUser(this.uId).subscribe(
-      data => {
-        this.charts = data.objects
-        this.createChart();
-      },
-      error => {
-        console.log(`Aconteceu um erro: ${error}`)
-      })
-  }
-  createChart() {
-    for (let i = 0; i <= this.charts.length; i++) {
-      console.log(this.charts[i])
+  /* createChart() {
+    console.log(this.uCharts.length)
+    for (let i = 0; i <= this.uCharts.length; i++) {
       this.chart = new Chart(this.element.nativeElement, {
-        type: this.charts[i].type,
+        type: this.uCharts[i].Objects.type,
         data: {
           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
           datasets: [{
@@ -68,7 +68,7 @@ export class ChartComponent implements OnInit {
           }
         }
       })
-    }
+    } 
 
   }
   changeChart() {
@@ -109,5 +109,5 @@ export class ChartComponent implements OnInit {
         }
       }
     });
-  }
+  }*/
 }

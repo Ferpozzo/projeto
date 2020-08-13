@@ -30,8 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -128,6 +127,7 @@
   },
   "defaultProject": "frontend",
   "cli": {
-    "analytics": "594a591d-5279-4e30-b3bb-d18ee18e0215"
+    "analytics": "594a591d-5279-4e30-b3bb-d18ee18e0215",
+    "defaultCollection": "@ngrx/schematics"
   }
 }
